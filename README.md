@@ -1,4 +1,4 @@
-# CredShield
+# Kred
 
 **AI-Powered Undercollateralized Lending & BNPL Protocol on BNB Chain**
 
@@ -18,7 +18,7 @@
 
 ## The Solution
 
-CredShield uses **AI to analyze real BSC mainnet transaction history** and generate an on-chain credit score (300-900) that determines borrowing power. Users with strong on-chain history borrow with **as low as 25% collateral** — vs. the standard 150%+ in DeFi.
+Kred uses **AI to analyze real BSC mainnet transaction history** and generate an on-chain credit score (300-900) that determines borrowing power. Users with strong on-chain history borrow with **as low as 25% collateral** — vs. the standard 150%+ in DeFi.
 
 ```mermaid
 flowchart LR
@@ -152,7 +152,7 @@ npm test
 ## Project Structure
 
 ```
-credshield/
+kred/
 ├── contracts/              # 6 Solidity smart contracts
 ├── backend/                # Hono + TypeScript API (credit engine, AI reports)
 ├── frontend/               # Next.js 15 dashboard (4 pages)

@@ -2,7 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const { loadFixture } = require("@nomicfoundation/hardhat-network-helpers");
 
-describe("CredShield Protocol", function () {
+describe("Kred Protocol", function () {
   async function deployFixture() {
     const [owner, user1, user2, merchant, lender] = await ethers.getSigners();
 

@@ -1,4 +1,4 @@
-# CredShield — Problem, Solution & Impact
+# Kred — Problem, Solution & Impact
 
 ## 1. Problem
 
@@ -13,7 +13,7 @@ This creates a **credit desert** where users with years of responsible DeFi acti
 
 ## 2. Solution
 
-CredShield bridges the gap between on-chain history and credit access using **AI-powered credit scoring**.
+Kred bridges the gap between on-chain history and credit access using **AI-powered credit scoring**.
 
 ### How It Works
 
@@ -120,7 +120,7 @@ sequenceDiagram
 
 ```mermaid
 gantt
-    title CredShield Roadmap
+    title Kred Roadmap
     dateFormat YYYY-Q
     section Phase 1 - MVP
     Core contracts + scoring      :done, 2026-Q1, 2026-Q1

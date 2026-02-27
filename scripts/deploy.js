@@ -2,7 +2,7 @@ const hre = require("hardhat");
 
 async function main() {
   const [deployer] = await hre.ethers.getSigners();
-  console.log("Deploying CredShield contracts with account:", deployer.address);
+  console.log("Deploying Kred contracts with account:", deployer.address);
   console.log("Balance:", hre.ethers.formatEther(await hre.ethers.provider.getBalance(deployer.address)), "BNB");
 
   // 1. Deploy MockUSDT (test stablecoin)
@@ -86,7 +86,7 @@ async function main() {
 
   // Summary
   console.log("\n========================================");
-  console.log("  CredShield Deployment Summary");
+  console.log("  Kred Deployment Summary");
   console.log("========================================");
   console.log("Network:          BSC Testnet");
   console.log("Deployer:        ", deployer.address);

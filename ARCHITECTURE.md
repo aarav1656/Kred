@@ -1,8 +1,8 @@
-# CredShield Architecture
+# Kred Architecture
 
 ## System Overview
 
-CredShield is a three-layer protocol that bridges off-chain AI credit analysis with on-chain lending execution.
+Kred is a three-layer protocol that bridges off-chain AI credit analysis with on-chain lending execution.
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐

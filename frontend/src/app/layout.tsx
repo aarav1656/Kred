@@ -12,7 +12,7 @@ const geistSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "CredShield — AI-Powered BNPL on BNB Chain",
+  title: "Kred — AI-Powered BNPL on BNB Chain",
   description: "Your on-chain reputation is your new credit card. Undercollateralized lending powered by AI credit scoring.",
 };
 

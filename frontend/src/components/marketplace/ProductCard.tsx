@@ -55,7 +55,7 @@ export function ProductCard({ product, onBuyNow }: ProductCardProps) {
             <div>
               <p className="text-lg font-bold">${product.price}</p>
               <p className="text-[10px] text-muted-foreground">
-                or ~${Math.round(product.price / 3)}/mo with CredShield
+                or ~${Math.round(product.price / 3)}/mo with Kred
               </p>
             </div>
             <Button

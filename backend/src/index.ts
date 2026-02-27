@@ -29,7 +29,7 @@ app.use('*', logger());
 // ========================
 app.get('/', (c) => {
   return c.json({
-    name: 'CredShield API',
+    name: 'Kred API',
     version: '1.0.0',
     description: 'AI-Powered Undercollateralized BNPL Protocol on BNB Chain',
     chain: 'BSC Testnet (chainId: 97)',
@@ -181,7 +181,7 @@ app.onError((err, c) => {
 const port = parseInt(process.env.PORT || '3001');
 console.log(`
 ╔═══════════════════════════════════════════════════════╗
-║           CredShield API Server                       ║
+║           Kred API Server                       ║
 ║           AI-Powered BNPL Protocol on BNB Chain       ║
 ╠═══════════════════════════════════════════════════════╣
 ║  Port: ${port}                                          ║

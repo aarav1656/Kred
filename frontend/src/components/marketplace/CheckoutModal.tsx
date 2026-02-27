@@ -55,7 +55,7 @@ export function CheckoutModal({ product, open, onClose }: CheckoutModalProps) {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg">
             <Shield className="h-5 w-5 text-primary" />
-            Pay in 3 with CredShield
+            Pay in 3 with Kred
           </DialogTitle>
         </DialogHeader>
 
@@ -155,7 +155,7 @@ export function CheckoutModal({ product, open, onClose }: CheckoutModalProps) {
           </div>
 
           <p className="text-[10px] text-center text-muted-foreground">
-            By clicking Approve & Pay, you authorize CredShield to debit your wallet for
+            By clicking Approve & Pay, you authorize Kred to debit your wallet for
             the first installment and lock your collateral in the Smart Collateral Vault.
           </p>
         </div>

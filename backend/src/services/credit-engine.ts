@@ -126,7 +126,7 @@ function calculateScore(data: WalletData): CreditScoreResult['breakdown'] {
   }
   assetHealth = Math.min(135, assetHealth);
 
-  // 5. Repayment History (max 135 pts, 15% weight) — starts at 0, grows with CredShield usage
+  // 5. Repayment History (max 135 pts, 15% weight) — starts at 0, grows with Kred usage
   const repaymentHistory = 0; // Will be populated from on-chain CredScore data
 
   // 6. Social Verification (max 45 pts, 5% weight)
@@ -182,7 +182,7 @@ async function generateAIReport(
       max_tokens: 500,
       messages: [{
         role: 'user',
-        content: `You are CredShield's AI credit analyst. Generate a brief, professional credit report for this BNB Chain wallet.
+        content: `You are Kred's AI credit analyst. Generate a brief, professional credit report for this BNB Chain wallet.
 
 Wallet: ${address}
 Total Score: ${totalScore}/900 (${tierName} tier)

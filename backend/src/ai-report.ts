@@ -22,7 +22,7 @@ export async function generateAIReport(
     .map((d) => `- ${d.name}: ${d.score}/${d.maxScore} (weight: ${d.weight * 100}%) — ${d.details}`)
     .join("\n");
 
-  const prompt = `You are CredShield's AI Credit Analyst. Generate a concise, professional credit report for a BSC (BNB Smart Chain) wallet.
+  const prompt = `You are Kred's AI Credit Analyst. Generate a concise, professional credit report for a BSC (BNB Smart Chain) wallet.
 
 **Wallet**: ${address}
 **CredScore**: ${credScore}/900
@@ -67,7 +67,7 @@ function generateFallbackReport(
   const strongest = [...dimensions].sort((a, b) => (b.score / b.maxScore) - (a.score / a.maxScore))[0];
   const weakest = [...dimensions].sort((a, b) => (a.score / a.maxScore) - (b.score / b.maxScore))[0];
 
-  return `**CredShield Credit Analysis — ${tier} Tier**
+  return `**Kred Credit Analysis — ${tier} Tier**
 
 Wallet ${address.slice(0, 6)}...${address.slice(-4)} has achieved a CredScore of ${credScore}/900, placing it in the ${tier} tier. This score is based on analysis of ${txCount} on-chain transactions and a current balance of ${bnbBalance} BNB.
 
@@ -75,5 +75,5 @@ The strongest dimension is ${strongest.name} (${strongest.score}/${strongest.max
 
 The primary area for improvement is ${weakest.name} (${weakest.score}/${weakest.maxScore}). Increasing activity in this area would significantly boost the CredScore and unlock better lending terms.
 
-Based on the ${tier} tier classification, this wallet qualifies for credit facilities with the corresponding collateral requirements and credit limits as defined by the CredShield protocol.`;
+Based on the ${tier} tier classification, this wallet qualifies for credit facilities with the corresponding collateral requirements and credit limits as defined by the Kred protocol.`;
 }

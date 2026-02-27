@@ -29,7 +29,7 @@ export function Sidebar() {
           <Shield className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h1 className="text-lg font-bold tracking-tight">CredShield</h1>
+          <h1 className="text-lg font-bold tracking-tight">Kred</h1>
           <p className="text-[10px] uppercase tracking-widest text-muted-foreground">
             BNB Chain
           </p>

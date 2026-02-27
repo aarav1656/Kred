@@ -199,7 +199,7 @@ function scoreRepaymentHistory(data: WalletData): DimensionScore {
   const maxScore = 135;
   const details: string[] = [];
 
-  // Since CredShield is new, we use proxy signals:
+  // Since Kred is new, we use proxy signals:
   // 1. Lending protocol repayments (Venus/Aave withdrawals after deposits)
   // 2. Consistent outflows suggesting debt servicing
 

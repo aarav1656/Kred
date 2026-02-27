@@ -1,7 +1,7 @@
 {
-  "name": "credshield",
+  "name": "kred",
   "version": "1.0.0",
-  "description": "CredShield - AI-Powered Undercollateralized BNPL Protocol on BNB Chain",
+  "description": "Kred - AI-Powered Undercollateralized BNPL Protocol on BNB Chain",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",

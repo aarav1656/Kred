@@ -19,7 +19,7 @@ pool.get('/stats', async (c) => {
         totalLoansRepaid: stats.loansRepaid,
         // Protocol info
         protocol: {
-          name: 'CredShield Lending Pool',
+          name: 'Kred Lending Pool',
           chain: 'BNB Smart Chain Testnet',
           stablecoin: 'USDT',
           maxUtilization: '80%',

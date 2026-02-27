@@ -1,4 +1,4 @@
-// CredShield BSC Testnet Contract Addresses (deployed 2026-02-27)
+// Kred BSC Testnet Contract Addresses (deployed 2026-02-27)
 export const CONTRACTS = {
   MockUSDT: "0xf10BDa04E2a5ff41329Edc0d9BA8a7e52956A27D" as `0x${string}`,
   CredScore: "0x6aB8B76ab4a7db790F64adE917e8029F6515e076" as `0x${string}`,

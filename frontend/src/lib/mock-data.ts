@@ -41,7 +41,7 @@ Your wallet demonstrates strong DeFi engagement over 18 months across BNB Chain.
 
 - **Asset Health (112/135):** Well-diversified portfolio with 45% stablecoins, 30% BNB, 15% blue-chip tokens, 10% other. Healthy stablecoin ratio indicates risk-aware behavior.
 
-- **Repayment History (121/135):** 4 out of 4 previous CredShield loans repaid on time. Perfect repayment streak of 120+ days.
+- **Repayment History (121/135):** 4 out of 4 previous Kred loans repaid on time. Perfect repayment streak of 120+ days.
 
 - **Social Verification (38/45):** Active governance participation in PancakeSwap and Venus. No ENS domain registered.
 

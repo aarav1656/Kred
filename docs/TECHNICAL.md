@@ -1,10 +1,10 @@
-# CredShield — Technical Architecture, Setup & Demo
+# Kred — Technical Architecture, Setup & Demo
 
 ## 1. Architecture
 
 ### System Overview
 
-CredShield is a three-layer protocol: **Frontend** (Next.js 15) communicates with a **Backend** (Hono API) that reads real transaction history from **BSC Mainnet** and executes lending operations on **BSC Testnet**.
+Kred is a three-layer protocol: **Frontend** (Next.js 15) communicates with a **Backend** (Hono API) that reads real transaction history from **BSC Mainnet** and executes lending operations on **BSC Testnet**.
 
 ```mermaid
 flowchart TB
@@ -141,8 +141,8 @@ graph TD
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/credshield.git
-cd credshield
+git clone https://github.com/YOUR_USERNAME/kred.git
+cd kred
 
 # Root — contract dependencies
 npm install
@@ -219,7 +219,7 @@ npm test
 
 ```mermaid
 journey
-    title CredShield Demo Flow
+    title Kred Demo Flow
     section Get Credit Score
       Open app: 5: User
       Connect wallet (MetaMask): 5: User

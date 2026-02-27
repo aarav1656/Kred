@@ -53,7 +53,7 @@ export default function LendPage() {
       <div>
         <h1 className="text-2xl font-bold">Lender Dashboard</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Earn yield by providing liquidity to the CredShield lending pool
+          Earn yield by providing liquidity to the Kred lending pool
         </p>
       </div>
 
