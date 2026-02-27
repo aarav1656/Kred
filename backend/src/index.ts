@@ -106,6 +106,31 @@ app.get('/api/credit-score/:address', async (c) => {
   }
 });
 
+// Batch scoring (multiple wallets)
+app.post('/api/credit-score/batch', async (c) => {
+  const body = await c.req.json<{ addresses: string[] }>();
+  if (!body.addresses || !Array.isArray(body.addresses) || body.addresses.length === 0) {
+    return c.json({ error: 'Provide an array of addresses' }, 400);
+  }
+  if (body.addresses.length > 5) {
+    return c.json({ error: 'Maximum 5 addresses per batch' }, 400);
+  }
+  const results = await Promise.all(
+    body.addresses.map(async (address) => {
+      try {
+        const walletData = await fetchWalletData(address);
+        const { credScore, dimensions } = calculateCredScore(walletData);
+        const tier = getTier(credScore);
+        const tierConfig = TIER_CONFIG[tier];
+        return { address, credScore, tier, creditLimit: tierConfig.creditLimit, collateralRatio: tierConfig.collateralRatio };
+      } catch {
+        return { address, error: 'Failed to analyze' };
+      }
+    })
+  );
+  return c.json({ results });
+});
+
 app.get('/api/credit-score/:address/breakdown', async (c) => {
   const address = c.req.param('address');
   if (!/^0x[a-fA-F0-9]{40}$/.test(address)) {

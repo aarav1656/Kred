@@ -332,7 +332,7 @@ export default function LendPage() {
                       borderRadius: "8px",
                       fontSize: 12,
                     }}
-                    formatter={(value: number) => [`${value}%`, "APY"]}
+                    formatter={(value: number | undefined) => [`${value ?? 0}%`, "APY"]}
                   />
                   <Area
                     type="monotone"
