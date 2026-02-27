@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+/// @title MockUSDT - Test stablecoin for CredShield testing
+contract MockUSDT is ERC20 {
+    constructor() ERC20("Mock USDT", "USDT") {
+        _mint(msg.sender, 1_000_000e18);
+    }
+
+    function mint(address to, uint256 amount) external {
+        _mint(to, amount);
+    }
+}
