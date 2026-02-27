@@ -1,4 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk';
+import OpenAI from 'openai';
 import axios from 'axios';
 import { TIER_NAMES, TIER_COLLATERAL_RATIOS, TIER_CREDIT_LIMITS, TIER_INTEREST_RATES } from '../types/index.js';
 import 'dotenv/config';
@@ -154,7 +154,7 @@ async function generateAIReport(
   totalScore: number,
   tierName: string
 ): Promise<string> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
     // Fallback report without AI
     return `Credit Analysis for ${address.slice(0, 6)}...${address.slice(-4)}\n\n` +
@@ -173,9 +173,12 @@ async function generateAIReport(
   }
 
   try {
-    const anthropic = new Anthropic({ apiKey });
-    const response = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+    const openai = new OpenAI({
+      baseURL: 'https://openrouter.ai/api/v1',
+      apiKey,
+    });
+    const response = await openai.chat.completions.create({
+      model: 'anthropic/claude-sonnet-4',
       max_tokens: 500,
       messages: [{
         role: 'user',
@@ -203,8 +206,7 @@ Write a 3-4 sentence credit assessment explaining WHY they got this score. Be sp
       }],
     });
 
-    const textBlock = response.content.find(b => b.type === 'text');
-    return textBlock?.text || 'Credit report generation failed.';
+    return response.choices[0]?.message?.content || 'Credit report generation failed.';
   } catch (error) {
     console.error('AI report error:', error);
     return `CredScore ${totalScore}/900 (${tierName}). Based on ${data.txCount} transactions across ${data.uniqueContracts} protocols.`;

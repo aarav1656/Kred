@@ -1,0 +1,54 @@
+{
+  "projectName": "CredShield",
+  "network": "BSC Testnet",
+  "chainId": 97,
+  "contracts": [
+    {
+      "name": "MockUSDT",
+      "address": "0xf10BDa04E2a5ff41329Edc0d9BA8a7e52956A27D",
+      "explorerLink": "https://testnet.bscscan.com/address/0xf10BDa04E2a5ff41329Edc0d9BA8a7e52956A27D",
+      "description": "Test stablecoin (ERC-20) used as the lending/payment token"
+    },
+    {
+      "name": "CredScore",
+      "address": "0x6aB8B76ab4a7db790F64adE917e8029F6515e076",
+      "explorerLink": "https://testnet.bscscan.com/address/0x6aB8B76ab4a7db790F64adE917e8029F6515e076",
+      "description": "On-chain credit registry — stores scores (300-900), tiers, credit limits, collateral ratios"
+    },
+    {
+      "name": "LendingPool",
+      "address": "0x73bebEd5658B3d6d2f341035e9aA0124C7AB3f2c",
+      "explorerLink": "https://testnet.bscscan.com/address/0x73bebEd5658B3d6d2f341035e9aA0124C7AB3f2c",
+      "description": "Core lending engine — accepts USDT deposits, creates undercollateralized loans, tracks installments"
+    },
+    {
+      "name": "SmartCollateral",
+      "address": "0xaAdc99b3928898D692C59f165f6f5D3D9605affF",
+      "explorerLink": "https://testnet.bscscan.com/address/0xaAdc99b3928898D692C59f165f6f5D3D9605affF",
+      "description": "Yield-earning collateral vault — collateral earns 8% APR, returns principal + yield on loan completion"
+    },
+    {
+      "name": "CreditSBT",
+      "address": "0xAAA1930451fDA7c569E844a6CbE93D2B793d8103",
+      "explorerLink": "https://testnet.bscscan.com/address/0xAAA1930451fDA7c569E844a6CbE93D2B793d8103",
+      "description": "Soulbound Credit Token (ERC-721, non-transferable) — tracks credit history, streaks, loans completed"
+    },
+    {
+      "name": "BNPLCheckout",
+      "address": "0xE0CF917AA5463d29158EcE406BeD6D9D8EC16af8",
+      "explorerLink": "https://testnet.bscscan.com/address/0xE0CF917AA5463d29158EcE406BeD6D9D8EC16af8",
+      "description": "Buy Now Pay Later — manages installment purchases, merchant payouts, links to LendingPool"
+    }
+  ],
+  "demoTransactions": [
+    {
+      "description": "Set credit score for demo wallet",
+      "hash": "See deployment.json for tx hashes"
+    },
+    {
+      "description": "Mint Soulbound Credit Token for demo wallet",
+      "hash": "See deployment.json for tx hashes"
+    }
+  ],
+  "notes": "Contracts are deployed and wired together. LendingPool is authorized to update CredScore. Credit scoring reads real BSC Mainnet data via NodeReal API."
+}

@@ -1,8 +1,11 @@
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { config } from "./config.js";
 import type { DimensionScore, WalletData } from "./types.js";
 
-const anthropic = new Anthropic({ apiKey: config.anthropicApiKey });
+const openai = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: config.openrouterApiKey,
+});
 
 export async function generateAIReport(
   address: string,
@@ -40,14 +43,13 @@ Write a 3-4 paragraph credit analysis that:
 Be specific — reference actual numbers. Write like a fintech credit report, not generic text. Keep it under 250 words.`;
 
   try {
-    const response = await anthropic.messages.create({
-      model: "claude-sonnet-4-20250514",
+    const response = await openai.chat.completions.create({
+      model: "anthropic/claude-sonnet-4",
       max_tokens: 500,
       messages: [{ role: "user", content: prompt }],
     });
 
-    const textBlock = response.content.find((block) => block.type === "text");
-    return textBlock?.text || "Credit report generation failed.";
+    return response.choices[0]?.message?.content || "Credit report generation failed.";
   } catch (err) {
     console.error("AI report generation error:", err instanceof Error ? err.message : err);
     return generateFallbackReport(address, credScore, tier, dimensions, bnbBalance, txCount);
