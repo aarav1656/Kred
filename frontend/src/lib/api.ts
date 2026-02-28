@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3001";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://kred-backend-production.up.railway.app";
 
 // Parse "$123.45" or "123.45" strings to number
 function parseAmount(val: string | number | undefined): number {
