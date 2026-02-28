@@ -14,8 +14,9 @@ import { getTier, TIERS, mockCreditProfile } from "@/lib/mock-data";
 import { bnplCheckout } from "@/lib/api";
 import { useDemoMode } from "@/lib/demo-mode";
 import { useAccount } from "wagmi";
-import { Shield, Calendar, ArrowRight, Check, Sparkles, Lock, Loader2, CheckCircle } from "lucide-react";
+import { Shield, Calendar, ArrowRight, Check, Sparkles, Lock, Loader2, CheckCircle, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useVenus } from "@/hooks/useVenus";
 
 interface Product {
   id: number;
@@ -36,6 +37,7 @@ interface CheckoutModalProps {
 export function CheckoutModal({ product, open, onClose }: CheckoutModalProps) {
   const { isDemoMode } = useDemoMode();
   const { address } = useAccount();
+  const { data: venusData } = useVenus();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -72,7 +74,9 @@ export function CheckoutModal({ product, open, onClose }: CheckoutModalProps) {
     setLoading(true);
     setError(null);
     try {
-      await bnplCheckout(buyerAddress, product.seller, product.price, product.name);
+      // Use a default merchant address for demo — seller field is a display name, not a wallet
+      const merchantAddress = "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18";
+      await bnplCheckout(buyerAddress, merchantAddress, product.price, product.name);
       setSuccess(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Checkout failed");
@@ -197,8 +201,8 @@ export function CheckoutModal({ product, open, onClose }: CheckoutModalProps) {
               <span className="font-bold text-foreground">${totalCost.toFixed(2)}</span>
             </div>
             <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 mt-1">
-              <Check className="h-3 w-3" />
-              Collateral earns ~5% APY on Venus Protocol while locked
+              <Zap className="h-3 w-3 text-yellow-400" />
+              Collateral earns {venusData?.supplyAPY?.toFixed(2) ?? "~5"}% APY on Venus Protocol while locked
             </div>
           </div>
 

@@ -22,6 +22,7 @@ import {
   AlertCircle,
   Inbox,
 } from "lucide-react";
+import { VenusYieldCard } from "@/components/venus/VenusYieldCard";
 
 export default function LoansPage() {
   const { isDemoMode } = useDemoMode();
@@ -243,28 +244,7 @@ export default function LoansPage() {
                     </div>
                   </div>
 
-                  <div className="rounded-lg border border-emerald-900/30 bg-emerald-950/20 p-3">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-xs font-medium text-emerald-400 flex items-center gap-1">
-                          <Sprout className="h-3 w-3" />
-                          Smart Collateral
-                        </p>
-                        <p className="text-sm font-semibold mt-0.5">
-                          ${loan.collateralAmount} locked
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-xs text-muted-foreground">Yield earned</p>
-                        <p className="text-sm font-bold text-emerald-400">
-                          +${(loan.collateralYield || 0).toFixed(2)}
-                        </p>
-                      </div>
-                    </div>
-                    <p className="text-[10px] text-muted-foreground mt-2">
-                      Earning ~5% APY on Venus Protocol
-                    </p>
-                  </div>
+                  <VenusYieldCard collateralAmount={loan.collateralAmount} />
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1.5 text-xs text-muted-foreground">

@@ -36,6 +36,9 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { VenusStats } from "@/components/venus/VenusStats";
+import { useVenus } from "@/hooks/useVenus";
+import { Zap, ExternalLink } from "lucide-react";
 
 const apyHistory = [
   { month: "Sep", apy: 6.2 },
@@ -161,6 +164,9 @@ export default function LendPage() {
           Earn yield by providing liquidity to the Kred lending pool
         </p>
       </div>
+
+      {/* Venus Protocol Live Stats */}
+      <VenusStats />
 
       {error && (
         <Card className="bg-rose-950/20 border-rose-500/30">
@@ -368,12 +374,16 @@ export default function LendPage() {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Deposit Date</span>
-                    <span className="font-medium">{displayPosition.depositDate}</span>
+                    <span className="font-medium">
+                      {displayPosition.depositDate ? new Date(displayPosition.depositDate).toLocaleDateString() : "—"}
+                    </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Days Active</span>
                     <span className="font-medium">
-                      {Math.floor((Date.now() - new Date(displayPosition.depositDate).getTime()) / (1000 * 60 * 60 * 24))}
+                      {displayPosition.depositDate
+                        ? Math.max(0, Math.floor((Date.now() - new Date(displayPosition.depositDate).getTime()) / (1000 * 60 * 60 * 24)))
+                        : 0}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
@@ -392,14 +402,33 @@ export default function LendPage() {
               </div>
             )}
             <Separator />
+            <div className="rounded-lg border border-emerald-900/30 bg-emerald-950/20 p-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-emerald-400 text-xs font-medium">
+                  <Zap className="h-3 w-3 text-yellow-400" />
+                  Venus Protocol Yield
+                </div>
+                <a
+                  href="https://app.venus.io/#/core-pool/market/0xfD5840Cd36d94D7229439859C0112a4185BC0255"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] text-yellow-500 hover:text-yellow-400 flex items-center gap-0.5 transition-colors"
+                >
+                  View on Venus <ExternalLink className="h-2.5 w-2.5" />
+                </a>
+              </div>
+              <p className="text-[10px] text-muted-foreground mt-1">
+                Idle collateral is deployed to Venus Protocol vUSDT market, earning real yield for borrowers while their funds are locked.
+              </p>
+            </div>
             <div className="rounded-lg border border-cyan-900/30 bg-cyan-950/20 p-3">
               <div className="flex items-center gap-2 text-cyan-400 text-xs font-medium">
                 <Shield className="h-3 w-3" />
                 Risk Protection
               </div>
               <p className="text-[10px] text-muted-foreground mt-1">
-                Your deposits are backed by borrower collateral and AI credit scoring.
-                Maximum utilization: 80%. Insurance pool covers defaults.
+                Deposits backed by borrower collateral + AI credit scoring.
+                Max utilization: 80%. Insurance pool covers defaults.
               </p>
             </div>
           </CardContent>
