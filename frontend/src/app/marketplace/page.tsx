@@ -30,7 +30,7 @@ export default function MarketplacePage() {
       <div>
         <h1 className="text-2xl font-bold">BNPL Marketplace</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Buy now, pay later with your CredScore. Zero-interest for Platinum members.
+          Buy now, pay later with your Kred score. Zero-interest for Platinum members.
         </p>
       </div>
 

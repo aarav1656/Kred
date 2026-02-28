@@ -97,7 +97,7 @@ export function ScoreGauge({ score, size = 280 }: ScoreGaugeProps) {
 
       {/* Center text */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">CredScore</p>
+        <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">Kred Score</p>
         <p className="text-5xl font-bold tabular-nums" style={{ color }}>
           {animatedScore}
         </p>

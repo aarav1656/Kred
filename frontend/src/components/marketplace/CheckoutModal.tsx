@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -10,7 +11,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { getTier, TIERS, mockCreditProfile } from "@/lib/mock-data";
-import { Shield, Calendar, ArrowRight, Check, Sparkles, Lock } from "lucide-react";
+import { bnplCheckout } from "@/lib/api";
+import { useDemoMode } from "@/lib/demo-mode";
+import { useAccount } from "wagmi";
+import { Shield, Calendar, ArrowRight, Check, Sparkles, Lock, Loader2, CheckCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Product {
@@ -30,6 +34,12 @@ interface CheckoutModalProps {
 }
 
 export function CheckoutModal({ product, open, onClose }: CheckoutModalProps) {
+  const { isDemoMode } = useDemoMode();
+  const { address } = useAccount();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   if (!product) return null;
 
   const score = mockCreditProfile.score;
@@ -49,8 +59,57 @@ export function CheckoutModal({ product, open, onClose }: CheckoutModalProps) {
     { label: "Month 3", amount: Math.round((product.price - installment * 2) * 100) / 100, date: new Date(today.getTime() + 60 * 24 * 60 * 60 * 1000).toLocaleDateString(), status: "upcoming" },
   ];
 
+  const handleApprove = async () => {
+    if (isDemoMode) {
+      setLoading(true);
+      await new Promise((r) => setTimeout(r, 1500));
+      setSuccess(true);
+      setLoading(false);
+      return;
+    }
+
+    const buyerAddress = address || "0xDemoUser";
+    setLoading(true);
+    setError(null);
+    try {
+      await bnplCheckout(buyerAddress, product.seller, product.price, product.name);
+      setSuccess(true);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Checkout failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleClose = () => {
+    setSuccess(false);
+    setError(null);
+    setLoading(false);
+    onClose();
+  };
+
+  if (success) {
+    return (
+      <Dialog open={open} onOpenChange={handleClose}>
+        <DialogContent className="sm:max-w-md bg-card border-border">
+          <div className="flex flex-col items-center py-8 space-y-4">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10">
+              <CheckCircle className="h-8 w-8 text-emerald-400" />
+            </div>
+            <h3 className="text-lg font-bold">Purchase Successful!</h3>
+            <p className="text-sm text-muted-foreground text-center max-w-xs">
+              Your BNPL order for <strong>{product.name}</strong> has been placed.
+              First installment of ${installment.toFixed(2)} has been charged.
+            </p>
+            <Button onClick={handleClose} className="mt-2">Done</Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   return (
-    <Dialog open={open} onOpenChange={onClose}>
+    <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-lg bg-card border-border">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-lg">
@@ -143,14 +202,29 @@ export function CheckoutModal({ product, open, onClose }: CheckoutModalProps) {
             </div>
           </div>
 
+          {/* Error */}
+          {error && (
+            <p className="text-xs text-rose-400 text-center">{error}</p>
+          )}
+
           {/* Action buttons */}
           <div className="flex gap-3">
-            <Button variant="outline" className="flex-1" onClick={onClose}>
+            <Button variant="outline" className="flex-1" onClick={handleClose} disabled={loading}>
               Cancel
             </Button>
-            <Button className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white border-0">
-              <Shield className="h-4 w-4 mr-2" />
-              Approve & Pay
+            <Button
+              className="flex-1 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white border-0"
+              onClick={handleApprove}
+              disabled={loading}
+            >
+              {loading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                <>
+                  <Shield className="h-4 w-4 mr-2" />
+                  Approve & Pay
+                </>
+              )}
             </Button>
           </div>
 

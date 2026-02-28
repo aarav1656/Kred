@@ -5,6 +5,7 @@ import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import "@rainbow-me/rainbowkit/styles.css";
 import { config } from "@/lib/wagmi";
+import { DemoModeProvider } from "@/lib/demo-mode";
 import { useState } from "react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
@@ -21,7 +22,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             overlayBlur: "small",
           })}
         >
-          {children}
+          <DemoModeProvider>{children}</DemoModeProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
