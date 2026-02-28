@@ -5,6 +5,7 @@
 > Built for [BNB Chain x YZi Labs Hack Series: Bengaluru](https://www.bnbchain.org/en/hackathon) (Feb 27-28, 2026)
 > Track: **Smart Collateral for Web3 Credit & BNPL**
 
+Note:  Use with VPN as backend is deployed on railway and in India its not working for some reasons so for fetching Cred Score use VPN
 ---
 
 ## The Problem
